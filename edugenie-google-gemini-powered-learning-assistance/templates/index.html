@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenie AI - Google Gemini Powered Learning Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">✨</div>
+            <div>
+                <h1>Edu<span>Genie</span></h1>
+            </div>
+        </div>
+        <div class="header-right">
+            {% if not configured %}
+            <div class="key-warning" title="Add your key in .env file">
+                ⚠️ API Key Required
+            </div>
+            {% endif %}
+            <div class="online">
+                <span class="dot"></span>
+                AI Assistant Online
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="badge">🚀 GEMINI POWERED LEARNING</div>
+        <h2>Learn smarter. <span class="gradient">Grow faster.</span></h2>
+        <p>Your personal AI study companion for instant answers, deep conceptual explanations, interactive quizzes, summarization, and step-by-step learning roadmaps.</p>
+    </section>
+
+    <!-- Main Workspace Container -->
+    <main class="container">
+        <section class="workspace">
+            <!-- Mode / Task Switcher Tabs -->
+            <div class="tasks" role="tablist">
+                <button class="task active" data-task="qa" id="tab-qa">
+                    <span class="task-icon">❓</span> Ask Q&A
+                </button>
+                <button class="task" data-task="explain" id="tab-explain">
+                    <span class="task-icon">💡</span> Explain Concept
+                </button>
+                <button class="task" data-task="quiz" id="tab-quiz">
+                    <span class="task-icon">📝</span> Practice Quiz
+                </button>
+                <button class="task" data-task="summary" id="tab-summary">
+                    <span class="task-icon">📄</span> Summarize
+                </button>
+                <button class="task" data-task="learn" id="tab-learn">
+                    <span class="task-icon">🚀</span> Learning Path
+                </button>
+            </div>
+
+            <!-- Quick Suggestion Chips -->
+            <div class="quick-chips" id="quickChips">
+                <span class="chips-label">Try asking:</span>
+                <div class="chips-list" id="chipsList">
+                    <!-- Populated dynamically by script.js -->
+                </div>
+            </div>
+
+            <div class="input-header">
+                <label for="input" class="input-title" id="inputTitle">What is your question?</label>
+                <span class="char-count" id="charCount">0 / 12,000</span>
+            </div>
+
+            <textarea id="input" placeholder="Ask anything... Example: Which is the largest ocean on Earth and why?"></textarea>
+
+            <div class="controls">
+                <div class="hint">
+                    <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to generate
+                </div>
+                <button class="generate" id="generate">
+                    <span class="btn-text">Ask EduGenie</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <div class="result-head">
+                    <div class="result-title-group">
+                        <h3 id="resultHeading">EduGenie Result</h3>
+                        <span class="ai-label" id="aiLabel">GEMINI AI</span>
+                    </div>
+                    <div class="result-actions">
+                        <button class="copy-btn" id="copyBtn" title="Copy to clipboard">
+                            📋 Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Text Result Output -->
+                <div id="result" class="answer"></div>
+
+                <!-- Interactive Quiz Output Container -->
+                <div id="quizContainer" class="quiz-container" style="display: none;">
+                    <div class="quiz-score-banner" id="quizScoreBanner" style="display: none;">
+                        <span id="quizScoreText">Score: 0 / 3</span>
+                        <button class="retry-quiz-btn" id="retryQuizBtn">🔄 Retake Quiz</button>
+                    </div>
+                    <div id="quizList" class="quiz-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Cards Showcase -->
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Smart Academic Q&A</h3>
+                <p>Receive clear, student-friendly answers with real-world examples and bulleted takeaways for any question.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🧩</div>
+                <h3>Interactive MCQ Quizzes</h3>
+                <p>Automatically turn any educational passage or topic into a 3-question quiz with instant answer verification.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🗺️</div>
+                <h3>Personalized Learning Paths</h3>
+                <p>Get a comprehensive beginner-to-advanced roadmap with structured 4-week schedules and curated resources.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p><strong>EduGenie AI</strong> • Google Gemini Powered Learning Assistant</p>
+            <p class="credits">Developed by <strong>Tella Divya Sree</strong> | Mentor: <strong>Siri</strong></p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
